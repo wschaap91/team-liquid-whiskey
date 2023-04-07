@@ -1,0 +1,22 @@
+@import './base.scss';
+
+body {
+    font-family: 'Cabin', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+    Utilities
+*/
+$region-map: 'islands', 'islay', 'highlands', 'lowlands', 'speyside', 'campbeltown';
+
+@each $region in $region-map {
+    .u-region-#{$region} {
+        --region: var(--color-#{$region}) !important;
+        --region-dark: var(--color-#{$region}-dark) !important;
+    }
+}

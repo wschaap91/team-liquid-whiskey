@@ -1,0 +1,38 @@
+:root {
+  //Region colors
+  --color-islands: #d71e44;
+  --color-islands-dark: #9e1b34;
+  --color-islay: #a5238E;
+  --color-islay-dark: #6e2671;
+  --color-highlands: #563494;
+  --color-highlands-dark: #322773;
+  --color-lowlands: #0663ae;
+  --color-lowlands-dark: #174272;
+  --color-speyside: #1ab467;
+  --color-speyside-dark: #007b46;
+  --color-campbeltown: #f3b41b;
+  --color-campbeltown-dark: #d29d2a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+/* body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
