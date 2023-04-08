@@ -13,7 +13,7 @@ const allRegions = computed(()=> {
   return regions.sort();
 })
 
-const activeFilter = ref(null);
+const activeFilter = ref('all');
 
 const setActiveFilter = (region = 'all') => {
   activeFilter.value = region;
