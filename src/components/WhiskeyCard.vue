@@ -1,4 +1,5 @@
 <script setup>
+
 const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -34,11 +35,29 @@ defineProps({
     --region: tomato;
     --region-dark: crimson;
     --region-gradient: linear-gradient(to right, var(--region), var(--region-dark));
-    display: grid;
-    color: white;
+    --card-end: 2rem;
+    --card-gutter: 1.5rem;
+    --img-min-width: 120px;
 
-    grid-template-columns: [start] 1.5rem [card-start] 2rem [desc-start] min-content [desc-end] minmax(2rem, auto) [img-start] minmax(calc(160px - 2rem), calc(205px - 2rem)) [card-end] 2rem [img-end];
+    --grid-img-column: minmax(var(--card-gutter), 1fr);
+
+    @media screen and (min-width: 390px) {
+        --grid-img-column: minmax(calc(var(--img-min-width) - var(--card-end)), calc(205px - var(--card-end)));
+    }
+
+    @media screen and (min-width: 465px) {
+        --img-min-width: 160px;
+        --card-gutter: 2rem;
+    }
+
+    display: grid;
+    grid-template-columns: [start] calc(0.75 * var(--card-gutter)) [card-start] var(--card-gutter) [desc-start] calc(var(--card-text-length, 13ch) * 0.70) [desc-end] minmax(var(--card-gutter), auto) [img-start] var(--grid-img-column) [card-end] minmax(var(--card-end), auto) [img-end];
     grid-template-rows: [start card-start] calc(544px - 1.5rem - 3.75rem - 2rem) [desc-end] 1.5rem [notes-start] 3.75rem [notes-end] 2rem [card-end] 2rem [img-end];
+    container-type: inline-size;
+
+    font-size: 2.25rem;
+
+    color: white;
 
     &:before {
         grid-column: card-start / card-end;
@@ -55,6 +74,7 @@ defineProps({
     &:after {
         grid-row: start;
         grid-column: start / card-end;
+
         content: '';
         height: 0.25rem;
         width: 3.75rem;
@@ -63,6 +83,16 @@ defineProps({
         justify-self: end;
         top: 2.25rem;
         right: -0.75rem;
+    }
+}
+
+@container(width > 550px) {
+    .whiskey-card {
+
+        &:before,
+        &:after {
+            grid-column: card-start / end;
+        }
     }
 }
 
@@ -88,18 +118,34 @@ defineProps({
 }
 
 .whiskey-card__image {
-    min-width: 160px;
-    width:100%;
-    max-width: 205px;
-    height: auto;
-    max-height: calc(544px + 2rem + 1.25rem);
+    z-index: 1;
+    min-width: var(--img-min-width);
 
-    grid-column: img-start / img-end;
-    grid-row: start / img-end;
+    object-fit: cover;
+    max-width: 160px;
+    height: 100%;
+    grid-column: card-start / card-end;
+    grid-row: card-start / desc-end;
+    align-self: start;
+    justify-self: center;
+    top: -2rem;
+    -webkit-mask-image: radial-gradient(circle at 50% 25%, white 50%, transparent 60% 100%);
+    mask-image: radial-gradient(circle at 50% 25%, white 50%, transparent 60% 100%);
 
-    align-self: end;
-    justify-self: start;
-    object-fit: contain;
+    @media screen and (min-width: 390px) {
+        object-fit: contain;
+        max-width: 205px;
+        max-height: calc(544px + 2rem + 2rem);
+        width:100%;
+        height: auto;
+        grid-column: img-start / img-end;
+        grid-row: start / img-end;
+        align-self: end;
+        justify-self: start;
+        top: initial;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
 }
 
 .whiskey-card__notes {
@@ -115,7 +161,7 @@ defineProps({
     list-style-type: none;
     padding-inline: 2rem;
     height: 3.75rem;
-    font-size: 0.875rem;
+    font-size: 14px;
 
     li {
         z-index: 1;
@@ -134,4 +180,5 @@ defineProps({
         border-radius: 0.25rem;
         transform: skew(-10deg);
     }
-}</style>
+}
+</style>
