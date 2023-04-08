@@ -1,28 +1,36 @@
 <script setup>
-import { computed } from 'vue'
-import { RouterView } from 'vue-router'
-import WhiskeyCard from './components/WhiskeyCard.vue'
+import { ref, computed } from 'vue'
+import WhiskeyList from './components/WhiskeyList.vue'
+import RegionFilter from './components/RegionFilter.vue'
 import whiskies from './whiskies.json'
 
-const longestTitle = computed(()=> {
-    return whiskies.reduce((acc, cur) => {
-        const length = cur.title.length;
-        return acc > length ? acc : length;
-    } , 0);
+const allRegions = computed(()=> {
+  const regions = whiskies.reduce((acc, curr) => {
+    const region = curr.region;
+    return acc.includes(region) ? acc : [...acc, region];
+  }, ['all']);
+
+  return regions.sort();
 })
+
+const activeFilter = ref(null);
+
+const setActiveFilter = (region = 'all') => {
+  activeFilter.value = region;
+}
+
 </script>
 
 <template>
   <h1 class="page-title">Whiskey Selection</h1>
 
-  <div class="page-wrapper" :style="`--card-text-length: ${longestTitle}ch`">
-    <WhiskeyCard :item='item' v-for="item in whiskies" :key="item.title"/>
-  </div>
+  <RegionFilter :regions="allRegions" @change-region="setActiveFilter"/>
 
-  <RouterView />
+  <WhiskeyList :whiskies="whiskies" :activeRegion="activeFilter"/>
+
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .page-title {
     text-align: center;
     display: block;
@@ -33,6 +41,7 @@ const longestTitle = computed(()=> {
     line-height: 1;
     letter-spacing: -0.1em;
     margin-inline: auto;
+    margin-block: 1em;
 
     @media screen and (min-width: 500px) {
       font-size: 5.5rem;
@@ -61,14 +70,10 @@ const longestTitle = computed(()=> {
 
     @media screen and (min-width: 1050px) {
       grid-template-columns: repeat(2, 1fr);
-      row-gap: 9rem;
-      padding-block-start: 9rem;
     }
 
     @media screen and (min-width: 1600px) {
       grid-template-columns: repeat(3, 1fr);
-      row-gap: 5rem;
-      padding-block-start: 5rem;
     }
   }
 </style>

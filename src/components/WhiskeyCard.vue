@@ -1,8 +1,6 @@
 <script setup>
 
-const capitalize = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
+import { capitalize } from '../assets/js/utilities.js';
 
 defineProps({
     item: {
@@ -10,6 +8,7 @@ defineProps({
         required: true
     }
 })
+
 </script>
 
 <template>
@@ -59,18 +58,20 @@ defineProps({
 
     color: white;
 
+    /* Black background card for the Whiskey Card */
     &:before {
         grid-column: card-start / card-end;
         grid-row: card-start / card-end;
 
         content: '';
-        background: linear-gradient(45deg, hsl(0deg 0% 10% / 0.1) 0 35%, hsl(0deg 0% 30% / 0.1), hsl(0deg 0% 10% / 0.1) 65% 100%), url(/images/card-bg.svg), hsl(0deg 0% 15%);
+        background: linear-gradient(45deg, hsl(0deg 0% 10% / 0.1) 0 35%, hsl(0deg 0% 40% / 0.15), hsl(0deg 0% 10% / 0.1) 65% 100%), url(/images/card-bg.svg), hsl(0deg 0% 15%);
         background-position: left top, right top, left top;
         background-size: 100%, cover, 100%;
         background-repeat: no-repeat;
         border-radius: 0.5rem;
     }
 
+    /* Small visual ornament in top right corner */
     &:after {
         grid-row: start;
         grid-column: start / card-end;
@@ -159,9 +160,13 @@ defineProps({
     align-items: center;
     gap: 2rem;
     list-style-type: none;
-    padding-inline: 2rem;
+    padding-inline: 2.875rem;
     height: 3.75rem;
     font-size: 14px;
+
+    @container (width < 450px) {
+        gap: 1rem;
+    }
 
     li {
         z-index: 1;
