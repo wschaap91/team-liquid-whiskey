@@ -25,6 +25,7 @@ const articles = useCollection(collection(db, 'articles'));
 .page-title {
   text-align: center;
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
   font-size: 3rem;

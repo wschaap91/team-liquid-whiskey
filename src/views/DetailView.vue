@@ -52,10 +52,16 @@ a {
 
 .detail-wrapper {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
     gap: 2rem;
 
     margin-block-end: 5rem;    
+
+    @media screen and (min-width: 775px) {
+        grid-template-columns: 2fr 1fr;
+        grid-auto-flow: column;
+    }
 
     &__context {
         display: flex;
