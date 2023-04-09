@@ -18,7 +18,6 @@ const buttonClick = (region) => {
     emit('change-region', region);
 }
 
-
 </script>
 
 <template>
@@ -38,12 +37,18 @@ const buttonClick = (region) => {
 .region-filter {
     display: grid;
     place-items: center;
+    max-width: 100%;
+    padding-inline: var(--page-padding-inline);
+
 }
 .region-filter__list {
+    max-width: 100%;
     list-style-type: none;
     padding-inline: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 0.75rem;
+    justify-content: center;
 }
     .region-filter__btn {
         font-family: inherit;

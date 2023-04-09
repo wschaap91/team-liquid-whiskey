@@ -4,7 +4,7 @@ import { capitalize } from '../assets/js/utilities.js';
 
 defineProps({
     item: {
-        type: Array,
+        type: Object,
         required: true
     }
 })

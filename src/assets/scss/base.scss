@@ -12,6 +12,12 @@
   --color-speyside-dark: #007b46;
   --color-campbeltown: #f3b41b;
   --color-campbeltown-dark: #d29d2a;
+  
+  --page-padding-inline: 0.75rem;
+
+  @media screen and (min-width: 550px) {
+    --page-padding-inline: 2rem;
+  }
 }
 
 *,

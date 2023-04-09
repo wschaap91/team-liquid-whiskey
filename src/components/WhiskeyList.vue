@@ -1,5 +1,6 @@
 <script setup>
-import { computed } from 'vue'
+
+import { computed, defineProps } from 'vue'
 import WhiskeyCard from './WhiskeyCard.vue'
 
 const props = defineProps({
@@ -14,10 +15,14 @@ const props = defineProps({
 })
 
 const longestTitle = computed(()=> {
+    if(props.whiskies.length) {
     return props.whiskies.reduce((acc, cur) => {
         const length = cur.title.length;
         return acc > length ? acc : length;
     } , 0);
+    } else {
+        return 0;
+    }
 })
 
 const filteredWhiskies = computed(()=> {
