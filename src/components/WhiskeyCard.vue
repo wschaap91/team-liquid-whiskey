@@ -15,7 +15,7 @@ defineProps({
     <article class="whiskey-card"
              :class="[`u-region-${item.region}`]">
         <div class="whiskey-card__context">
-            <h1 class="whiskey-card__title"><router-link :to="`/whiskey/${item.title.toLowerCase()}`"> <span>{{ capitalize(item.title)
+            <h1 class="whiskey-card__title"><router-link :to="`/whiskey/${item.title.toLowerCase()}`" :whiskey="item"> <span>{{ capitalize(item.title)
             }}</span> </router-link></h1>
             <p class="whiskey-card__region">{{ capitalize(item.region) }} Region</p>
             <p class="whiskey-card__cost">${{ item.cost }}</p>
