@@ -37,9 +37,6 @@ const buttonClick = (region) => {
 .region-filter {
     display: grid;
     place-items: center;
-    max-width: 100%;
-    padding-inline: var(--page-padding-inline);
-
 }
 .region-filter__list {
     max-width: 100%;

@@ -1,0 +1,13 @@
+/*
+    Utilities
+*/
+$region-map: 'islands', 'islay', 'highlands', 'lowlands', 'speyside', 'campbeltown';
+
+@each $region in $region-map {
+    .u-region-#{$region} {
+        --region: var(--color-#{$region}) !important;
+        --region-dark: var(--color-#{$region}-dark) !important;
+    }
+}
+
+

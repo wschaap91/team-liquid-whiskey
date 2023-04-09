@@ -1,0 +1,19 @@
+html {
+    font-size: 14px;
+
+    @media screen and (min-width: 508px) {
+        font-size: 16px;
+    }
+}
+
+body {
+    font-family: 'Cabin', Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-y: scroll;
+    padding-block-end: 13rem;
+    
+    padding-inline: var(--page-padding-inline);
+}

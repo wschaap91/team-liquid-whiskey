@@ -40,6 +40,10 @@ defineProps({
 
     --grid-img-column: minmax(var(--card-gutter), 1fr);
 
+
+    margin-inline-start: calc(-0.75 * var(--card-gutter));
+    margin-inline-end: calc(-1 * var(--card-end));
+
     @media screen and (min-width: 390px) {
         --grid-img-column: minmax(calc(var(--img-min-width) - var(--card-end)), calc(205px - var(--card-end)));
     }
@@ -89,9 +93,9 @@ defineProps({
 
 @container(width > 550px) {
     .whiskey-card {
-
         &:before,
         &:after {
+            margin-right: var(--card-end);
             grid-column: card-start / end;
         }
     }

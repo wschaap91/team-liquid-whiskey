@@ -1,30 +1,6 @@
-@import './base.scss';
+@import './base';
+@import './elements';
+@import './objects';
+@import './utilities';
 
-html {
-    font-size: 14px;
 
-    @media screen and (min-width: 508px) {
-        font-size: 16px;
-    }
-}
-
-body {
-    font-family: 'Cabin', Arial, Helvetica, sans-serif;
-    line-height: 1.5;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-y: scroll;
-}
-
-/*
-    Utilities
-*/
-$region-map: 'islands', 'islay', 'highlands', 'lowlands', 'speyside', 'campbeltown';
-
-@each $region in $region-map {
-    .u-region-#{$region} {
-        --region: var(--color-#{$region}) !important;
-        --region-dark: var(--color-#{$region}-dark) !important;
-    }
-}

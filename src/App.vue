@@ -1,14 +1,16 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useCollection, useFirestore } from 'vuefire'
-import { collection } from "firebase/firestore"
+import { collection } from "firebase/firestore";
 import { unique } from './assets/js/utilities.js';
 
-import WhiskeyList from './components/WhiskeyList.vue'
-import RegionFilter from './components/RegionFilter.vue'
+import WhiskeyList from './components/WhiskeyList.vue';
+import RegionFilter from './components/RegionFilter.vue';
+import ArticleList from './components/ArticleList.vue';
 
 const db = useFirestore()
-const whiskies = useCollection(collection(db,'whiskies'));
+const whiskies = useCollection(collection(db, 'whiskies'));
+const articles = useCollection(collection(db, 'articles'));
 
 const regions = computed(() => {
   const defaultArray = ['all'];
@@ -30,26 +32,23 @@ const setActiveFilter = (region = 'all') => {
 </script>
 
 <template>
-  <h1 class="page-title">Whiskey Selection</h1>
-  <RegionFilter :regions="regions"
-                @change-region="setActiveFilter" />
-  <WhiskeyList :whiskies="whiskies"
-               :activeRegion="activeFilter" />
+  <div class="page-wrapper">
+    <h1 class="page-title o-title">Whiskey Selection</h1>
+    <RegionFilter :regions="regions"
+                  @change-region="setActiveFilter" />
+    <WhiskeyList :whiskies="whiskies"
+                 :activeRegion="activeFilter" />
+    <ArticleList :articles="articles" />
+  </div>
 </template>
 
 <style lang="scss">
 .page-title {
   text-align: center;
   display: block;
-  font-style: italic;
-  text-transform: uppercase;
-  font-weight: bold;
   font-size: 3rem;
-  line-height: 1;
-  letter-spacing: -0.1em;
   margin-inline: auto;
   margin-block: 1em;
-  padding-inline: var(--page-padding-inline);
 
   @media screen and (min-width: 500px) {
     font-size: 5.5rem;
@@ -57,29 +56,9 @@ const setActiveFilter = (region = 'all') => {
 }
 
 .page-wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-  column-gap: 0.5rem;
-
-  max-width: calc(1450px + (2 * var(--page-padding-inline)));
-
+  box-sizing: content-box;
   padding-inline: var(--page-padding-inline);
+  max-width: 1380px;
   margin-inline: auto;
-  row-gap: 3rem;
-  padding-block-start: 3rem;
-
-  @media screen and (min-width: 555px) {
-    column-gap: 1.5rem;
-    row-gap: 5rem;
-    padding-block-start: 5rem;
-  }
-
-  @media screen and (min-width: 1050px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media screen and (min-width: 1600px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }
 </style>
