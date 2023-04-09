@@ -39,6 +39,8 @@ const setActiveFilter = (region = 'all') => {
     <WhiskeyList :whiskies="whiskies"
                  :activeRegion="activeFilter" />
     <ArticleList :articles="articles" />
+
+    <footer>Copyright 2023 - Koffie met Schaap</footer>
   </div>
 </template>
 
@@ -60,5 +62,10 @@ const setActiveFilter = (region = 'all') => {
   padding-inline: var(--page-padding-inline);
   max-width: 1380px;
   margin-inline: auto;
+}
+
+footer {
+  padding-block: 2rem;
+  text-align: center;
 }
 </style>

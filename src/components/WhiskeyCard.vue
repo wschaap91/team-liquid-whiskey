@@ -15,7 +15,8 @@ defineProps({
     <article class="whiskey-card"
              :class="[`u-region-${item.region}`]">
         <div class="whiskey-card__context">
-            <h1 class="whiskey-card__title">{{ capitalize(item.title) }}</h1>
+            <h1 class="whiskey-card__title"><router-link :to="`/whiskey/${item.title.toLowerCase()}`"> <span>{{ capitalize(item.title)
+            }}</span> </router-link></h1>
             <p class="whiskey-card__region">{{ capitalize(item.region) }} Region</p>
             <p class="whiskey-card__cost">${{ item.cost }}</p>
         </div>
@@ -39,7 +40,6 @@ defineProps({
     --img-min-width: 120px;
 
     --grid-img-column: minmax(var(--card-gutter), 1fr);
-
 
     margin-inline-start: calc(-0.75 * var(--card-gutter));
     margin-inline-end: calc(-1 * var(--card-end));
@@ -89,10 +89,17 @@ defineProps({
         top: 2.25rem;
         right: -0.75rem;
     }
+
+    &:hover {
+        a {
+            text-decoration: underline;
+        }
+    }
 }
 
 @container(width > 550px) {
     .whiskey-card {
+
         &:before,
         &:after {
             margin-right: var(--card-end);
@@ -102,12 +109,44 @@ defineProps({
 }
 
 .whiskey-card__context {
+    position: initial;
     display: flex;
     flex-direction: column;
     align-self: end;
 
     grid-column: desc-start / desc-end;
     grid-row: card-start / desc-end;
+}
+
+.whiskey-card__title {
+    position: initial;
+
+    a,
+    span {
+        font-weight: inherit;
+        color: inherit;
+        text-decoration: none;
+    } 
+
+    a {
+        position: initial;
+        &:before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        &:focus-visible {
+            span {
+                outline: auto;
+            }
+        }
+    }
 }
 
 .whiskey-card__title,
@@ -141,7 +180,7 @@ defineProps({
         object-fit: contain;
         max-width: 205px;
         max-height: calc(544px + 2rem + 2rem);
-        width:100%;
+        width: 100%;
         height: auto;
         grid-column: img-start / img-end;
         grid-row: start / img-end;
@@ -189,5 +228,4 @@ defineProps({
         border-radius: 0.25rem;
         transform: skew(-10deg);
     }
-}
-</style>
+}</style>
