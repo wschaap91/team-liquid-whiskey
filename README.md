@@ -1,6 +1,6 @@
 # team-liquid-whiskey
 
-This template should help get you started developing with Vue 3 in Vite.
+This is my take on the assignment for team liquids whiskey selection
 
 ## Recommended IDE Setup
 
