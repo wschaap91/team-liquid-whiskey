@@ -93,6 +93,7 @@ defineProps({
     &:hover {
         a {
             text-decoration: underline;
+            text-decoration-color: var(--region);
         }
     }
 }
@@ -128,6 +129,11 @@ defineProps({
         text-decoration: none;
     } 
 
+    a span {
+        outline-offset: 2rem;
+        transition: 0.1s outline-offset linear;
+    }
+
     a {
         position: initial;
         &:before {
@@ -144,6 +150,8 @@ defineProps({
         &:focus-visible {
             span {
                 outline: auto;
+                outline-offset: 0.5rem;
+                outline-color: var(--region);
             }
         }
     }

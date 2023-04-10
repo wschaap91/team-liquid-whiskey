@@ -23,7 +23,7 @@ const buttonClick = (region) => {
 <template>
     <div class="region-filter">
         <ul class="region-filter__list">
-            <li class="region-filter__list-item" v-for="region in regions" :key="region" :class="{'is-active': activeRegion === region}">
+            <li class="region-filter__list-item" v-for="region in regions" :key="region" :class="[{'is-active': activeRegion === region}, `u-region-${region}`]">
                 <button class="region-filter__btn" @click="buttonClick(region)">
                     {{ capitalize(region) }}
                 </button>
@@ -65,6 +65,18 @@ const buttonClick = (region) => {
             color: black;
             background-color: rgba(0,0,0,0.05);
         }
+
+        &:hover {
+            outline-width: auto;
+            outline-style: auto;
+        }
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+            outline-color: var(--region);
+        }
+        
     }
 
 </style>
